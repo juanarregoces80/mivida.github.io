@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Video Protegido</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ff000093;
+      color: rgb(14, 9, 9);
+      text-align: center;
+      padding: 2rem;
+    }
+
+    #videoContainer {
+      display: none;
+      margin-top: 2rem;
+    }
+
+    input[type="password"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      text-align: center;
+      width: 200px;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      margin-left: 10px;
+      cursor: pointer;
+      background-color: #fbff09;
+      color: rgb(26, 20, 20);
+      border: none;
+      border-radius: 5px;
+    }
+
+    video {
+      width: 80%;
+      max-width: 600px;
+      margin-top: 1rem;
+      border: 2px solid white;
+    }
+
+    .error {
+      color: #ff4444;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Acceso a Video Privado</h1>
+  
+  <p>Ingresa el código PIN de 4 cifras para ver el video:</p>
+  
+
+  <input type="password" id="pinInput" maxlength="6" placeholder="******">
+  <button onclick="verificarPIN()">Ingresar</button>
+
+  <div class="error" id="errorMensaje"></div>
+
+  <div id="videoContainer">
+    <video controls>
+      <source src="video.mp4" type="video/mp4">
+      Tu navegador no soporta el video.
+     
+    </video>
+    
+  </div>
+
+  <script>
+    const PIN_CORRECTO = "240625"; // Cambia esto por tu código secreto
+
+    function verificarPIN() {
+      const input = document.getElementById("pinInput").value;
+      const error = document.getElementById("errorMensaje");
+
+      if (input === PIN_CORRECTO) {
+        document.getElementById("videoContainer").style.display = "block";
+        error.textContent = "";
+      } else {
+        document.getElementById("videoContainer").style.display = "none";
+        error.textContent = "Código incorrecto. Inténtalo de nuevo.";
+      }
+    }
+  </script>
+
+</body>
+</html>
